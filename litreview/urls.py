@@ -21,4 +21,5 @@ from authentication import views as auth_views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("signup/", auth_views.signup, name='signup'),
+    path("login/", auth_views.log_user, name='login'),
 ]
