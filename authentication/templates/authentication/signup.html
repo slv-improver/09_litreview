@@ -3,5 +3,15 @@
 {% block title %}Signup{% endblock %}
 
 {% block content %}
-    <h1>Signup</h1>
+<h1>Signup</h1>
+
+{% if form.errors %}
+    <p>{{ form.errors }}</p>
+{% endif %}
+
+<form action="" method="post">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <button type="submit">Sign up</button>
+</form>
 {% endblock %}
