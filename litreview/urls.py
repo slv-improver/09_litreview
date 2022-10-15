@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from authentication import views as auth_views
+from review import views as rev_views
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("signup/", auth_views.signup, name='signup'),
     path("login/", auth_views.log_user, name='login'),
+    path("", rev_views.home, name='home'),
 ]

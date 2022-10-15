@@ -1,5 +1,5 @@
 from django.contrib.auth import login, authenticate
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from . import forms
 
 
@@ -9,6 +9,7 @@ def signup(r):
         if form.is_valid():
             user = form.save()
             login(r, user)
+            return redirect('home')
     else:
         form = forms.SignupForm()
     return render(
@@ -27,6 +28,7 @@ def log_user(r):
             )
             if user is not None:
                 login(r, user)
+                return redirect('home')
     else:
         form = forms.LoginForm()
     return render(
