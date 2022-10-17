@@ -23,5 +23,5 @@ urlpatterns = [
     path("signup/", auth_views.signup, name='signup'),
     path("login/", auth_views.login_user, name='login'),
     path("logout/", auth_views.logout_user, name='logout'),
-    path("feed", include('review.urls')),
+    path("feed/", include('review.urls')),
 ]
