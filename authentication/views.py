@@ -19,6 +19,7 @@ def signup(r):
     )
 
 def log_user(r):
+    message = ''
     if r.method == 'POST':
         form = forms.LoginForm(r.POST)
         if form.is_valid():
@@ -29,10 +30,12 @@ def log_user(r):
             if user is not None:
                 login(r, user)
                 return redirect('home')
+            else:
+                message = 'Credentials Error'
     else:
         form = forms.LoginForm()
     return render(
         r,
         'authentication/login.html',
-        {'form': form}
+        {'form': form, 'message': message}
     )
