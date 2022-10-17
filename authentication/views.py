@@ -18,7 +18,7 @@ def signup(r):
         {'form': form}
     )
 
-def log_user(r):
+def login_user(r):
     message = ''
     if r.method == 'POST':
         form = forms.LoginForm(r.POST)
