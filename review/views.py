@@ -3,8 +3,8 @@ from django.contrib.auth.decorators import login_required
 
 
 @login_required
-def home(r):
+def feed(r):
     return render(
         r,
-        'review/home.html'
+        'review/feed.html'
     )
