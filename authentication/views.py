@@ -1,5 +1,6 @@
 from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import redirect, render
+from django.conf import settings
 from . import forms
 
 
@@ -9,7 +10,7 @@ def signup(r):
         if form.is_valid():
             user = form.save()
             login(r, user)
-            return redirect('home')
+            return redirect(settings.LOGIN_REDIRECT_URL)
     else:
         form = forms.SignupForm()
     return render(
@@ -29,7 +30,7 @@ def login_user(r):
             )
             if user is not None:
                 login(r, user)
-                return redirect('home')
+                return redirect(settings.LOGIN_REDIRECT_URL)
             else:
                 message = 'Credentials Error'
     else:

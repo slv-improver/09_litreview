@@ -136,3 +136,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # URL for login_required decorator
 
 LOGIN_URL = 'login'
+
+LOGIN_REDIRECT_URL = 'feed'
