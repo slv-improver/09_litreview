@@ -16,6 +16,13 @@
             <a href="{% url 'create_review' ticket.id %}">Review</a>
         </div>
     {% endfor %}
+    <hr />
+    {% for review in reviews %}
+        <div>
+            <h3>{{ review.headline }} - {{ review.rating }}</h3>
+            <p>{{ review.body }}</p>
+        </div>
+    {% endfor %}
 </div>
 
 <a href="{% url 'create_ticket' %}">Request review</a>

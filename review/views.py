@@ -7,10 +7,11 @@ from . import models
 @login_required
 def feed(r):
     tickets = models.Ticket.objects.all()
+    reviews = models.Review.objects.all()
     return render(
         r,
         'review/feed.html',
-        {'tickets': tickets}
+        {'tickets': tickets, 'reviews': reviews}
     )
 
 @login_required
