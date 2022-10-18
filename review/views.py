@@ -16,7 +16,7 @@ def feed(r):
 @login_required
 def create_ticket(r):
     if r.method == 'POST':
-        form = forms.TicketForm(r.POST)
+        form = forms.TicketForm(r.POST, r.FILES)
         ticket = form.save(commit=False)
         ticket.user = r.user
         ticket.save()
