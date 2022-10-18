@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from . import forms
 from . import models
@@ -27,5 +27,24 @@ def create_ticket(r):
     return render(
         r,
         'review/create_ticket.html',
+        {'form': form}
+    )
+
+@login_required
+def create_review(r, ticket_id):
+    ticket = get_object_or_404(models.Ticket, id=ticket_id)
+    if r.method == 'POST':
+        form = forms.ReviewForm(r.POST, r.FILES)
+        review = form.save(commit=False)
+        review.user = r.user
+        review.ticket = ticket
+        review.save()
+        return redirect('feed')
+    else:
+        form = forms.ReviewForm()
+
+    return render(
+        r,
+        'review/create_review.html',
         {'form': form}
     )
