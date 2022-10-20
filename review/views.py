@@ -47,5 +47,5 @@ def create_review(r, ticket_id):
     return render(
         r,
         'review/create_review.html',
-        {'form': form}
+        {'form': form, 'ticket': ticket}
     )
