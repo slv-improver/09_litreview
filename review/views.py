@@ -32,7 +32,7 @@ def create_ticket(r):
     )
 
 @login_required
-def create_review(r, ticket_id):
+def create_review_reply(r, ticket_id):
     ticket = get_object_or_404(models.Ticket, id=ticket_id)
     if r.method == 'POST':
         form = forms.ReviewForm(r.POST, r.FILES)
@@ -46,6 +46,6 @@ def create_review(r, ticket_id):
 
     return render(
         r,
-        'review/create_review.html',
+        'review/create_review_reply.html',
         {'form': form, 'ticket': ticket}
     )

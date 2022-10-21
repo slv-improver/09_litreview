@@ -8,7 +8,7 @@
 <div>
     {% for ticket in tickets %}
         {% include 'review/partials/ticket_snippet.html' %}
-        <a href="{% url 'create_review' ticket.id %}">Review</a>
+        <a href="{% url 'create_review_reply' ticket.id %}">Review</a>
     {% endfor %}
     <hr />
     {% for review in reviews %}
