@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user_model
 from . import forms
 from . import models
 
@@ -18,10 +19,11 @@ def feed(r):
 def create_ticket(r):
     if r.method == 'POST':
         form = forms.TicketForm(r.POST, r.FILES)
-        ticket = form.save(commit=False)
-        ticket.user = r.user
-        ticket.save()
-        return redirect('feed')
+        if form.is_valid():
+            ticket = form.save(commit=False)
+            ticket.user = r.user
+            ticket.save()
+            return redirect('feed')
     else:
         form = forms.TicketForm()
 
@@ -36,11 +38,12 @@ def create_review_reply(r, ticket_id):
     ticket = get_object_or_404(models.Ticket, id=ticket_id)
     if r.method == 'POST':
         form = forms.ReviewForm(r.POST, r.FILES)
-        review = form.save(commit=False)
-        review.user = r.user
-        review.ticket = ticket
-        review.save()
-        return redirect('feed')
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.user = r.user
+            review.ticket = ticket
+            review.save()
+            return redirect('feed')
     else:
         form = forms.ReviewForm()
 
@@ -55,14 +58,15 @@ def create_review(r):
     if r.method == 'POST':
         ticket_form = forms.TicketForm(r.POST, r.FILES)
         review_form = forms.ReviewForm(r.POST)
-        ticket = ticket_form.save(commit=False)
-        ticket.user = r.user
-        ticket.save()
-        review = review_form.save(commit=False)
-        review.user = r.user
-        review.ticket = ticket
-        review.save()
-        return redirect('feed')
+        if all([ticket_form.is_valid(), review_form.is_valid()]):
+            ticket = ticket_form.save(commit=False)
+            ticket.user = r.user
+            ticket.save()
+            review = review_form.save(commit=False)
+            review.user = r.user
+            review.ticket = ticket
+            review.save()
+            return redirect('feed')
     else:
         ticket_form = forms.TicketForm()
         review_form = forms.ReviewForm()
