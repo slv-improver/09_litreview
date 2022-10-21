@@ -76,3 +76,13 @@ def create_review(r):
         'review/create_review.html',
         {'ticket_form': ticket_form, 'review_form': review_form}
     )
+
+@login_required
+def posts(r):
+    tickets = models.Ticket.objects.filter(user=r.user)
+    reviews =  models.Review.objects.filter(user=r.user)
+    return render(
+        r,
+        'review/posts.html',
+        {'tickets': tickets, 'reviews': reviews}
+    )

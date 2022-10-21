@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}My posts{% endblock %}
+
+{% block content %}
+<h1>My Posts</h1>
+
+<div>
+    {% for ticket in tickets %}
+        {% include 'review/partials/ticket_snippet.html' %}
+    {% endfor %}
+    <hr />
+    {% for review in reviews %}
+        {% include 'review/partials/review_snippet.html' %}
+    {% endfor %}
+</div>
+{% endblock %}
