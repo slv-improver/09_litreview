@@ -49,3 +49,26 @@ def create_review_reply(r, ticket_id):
         'review/create_review_reply.html',
         {'form': form, 'ticket': ticket}
     )
+
+@login_required
+def create_review(r):
+    if r.method == 'POST':
+        ticket_form = forms.TicketForm(r.POST, r.FILES)
+        review_form = forms.ReviewForm(r.POST)
+        ticket = ticket_form.save(commit=False)
+        ticket.user = r.user
+        ticket.save()
+        review = review_form.save(commit=False)
+        review.user = r.user
+        review.ticket = ticket
+        review.save()
+        return redirect('feed')
+    else:
+        ticket_form = forms.TicketForm()
+        review_form = forms.ReviewForm()
+
+    return render(
+        r,
+        'review/create_review.html',
+        {'ticket_form': ticket_form, 'review_form': review_form}
+    )
