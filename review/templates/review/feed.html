@@ -12,10 +12,7 @@
     {% endfor %}
     <hr />
     {% for review in reviews %}
-        <div>
-            <h3>{{ review.headline }} - {{ review.rating }}</h3>
-            <p>{{ review.body }}</p>
-        </div>
+        {% include 'review/partials/review_snippet.html' %}
     {% endfor %}
 </div>
 
