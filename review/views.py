@@ -115,15 +115,24 @@ def update_ticket(r, ticket_id):
     )
 
 @login_required
-def update_review(r, review_id):
-    review = get_object_or_404(models.Review, id=review_id)
+def update_post(r, post_id):
+    if 'ticket' in r.path:
+        post = get_object_or_404(models.Ticket, id=post_id)
+    elif 'review' in r.path:
+        post = get_object_or_404(models.Review, id=post_id)
     if r.method == 'POST':
-        form = forms.ReviewForm(r.POST, instance=review)
+        if 'ticket' in r.path:
+            form = forms.TicketForm(r.POST, r.FILES, instance=post)
+        elif 'review' in r.path:
+            form = forms.ReviewForm(r.POST, instance=post)
         if form.is_valid():
             form.save()
             return redirect('posts')
     else:
-        form = forms.ReviewForm(instance=review)
+        if 'ticket' in r.path:
+            form = forms.TicketForm(instance=post)
+        elif 'review' in r.path:
+            form = forms.ReviewForm(instance=post)
     return render(
         r,
         'review/update_post.html',
@@ -131,33 +140,20 @@ def update_review(r, review_id):
     )
 
 @login_required
-def delete_ticket(r, ticket_id):
-    ticket = get_object_or_404(models.Ticket, id=ticket_id)
+def delete_post(r, post_id):
+    if 'ticket' in r.path:
+        post = get_object_or_404(models.Ticket, id=post_id)
+    elif 'review' in r.path:
+        post = get_object_or_404(models.Review, id=post_id)
     if r.method == 'POST':
         form = forms.DeletePostForm(r.POST)
         if form.is_valid():
-            ticket.delete()
+            post.delete()
             return redirect('posts')
     else:
         form = forms.DeletePostForm()
     return render(
         r,
         'review/delete_post.html',
-        {'form': form, 'post': ticket}
-    )
-
-@login_required
-def delete_review(r, review_id):
-    review = get_object_or_404(models.Review, id=review_id)
-    if r.method == 'POST':
-        form = forms.DeletePostForm(r.POST)
-        if form.is_valid():
-            review.delete()
-            return redirect('posts')
-    else:
-        form = forms.DeletePostForm()
-    return render(
-        r,
-        'review/delete_post.html',
-        {'form': form, 'post': review}
+        {'form': form, 'post': post}
     )
