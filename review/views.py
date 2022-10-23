@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
+from itertools import chain
 from . import forms
 from . import models
 
@@ -9,10 +10,15 @@ from . import models
 def feed(r):
     tickets = models.Ticket.objects.all()
     reviews = models.Review.objects.all()
+    posts = sorted(
+        chain(tickets,reviews), 
+        key=lambda x: x.time_created, 
+        reverse=True
+    )
     return render(
         r,
         'review/feed.html',
-        {'tickets': tickets, 'reviews': reviews}
+        {'posts': posts}
     )
 
 @login_required
@@ -81,8 +87,13 @@ def create_review(r):
 def posts(r):
     tickets = models.Ticket.objects.filter(user=r.user)
     reviews =  models.Review.objects.filter(user=r.user)
+    posts = sorted(
+        chain(tickets,reviews), 
+        key=lambda x: x.time_created, 
+        reverse=True
+    )
     return render(
         r,
         'review/posts.html',
-        {'tickets': tickets, 'reviews': reviews}
+        {'posts': posts}
     )
