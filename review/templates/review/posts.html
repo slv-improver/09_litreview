@@ -11,9 +11,11 @@
         {% if post|model_type == 'Ticket' %}
             {% include 'review/partials/ticket_snippet.html' with ticket=post %}
             <a href="{% url 'update_ticket' post.id %}">Update</a>
+            <a href="{% url 'delete_ticket' post.id %}">Delete</a>
         {% elif post|model_type == 'Review' %}
             {% include 'review/partials/review_snippet.html' with review=post %}
             <a href="{% url 'update_review' post.id %}">Update</a>
+            <a href="{% url 'delete_review' post.id %}">Delete</a>
         {% endif %}
     {% endfor %}
 </div>

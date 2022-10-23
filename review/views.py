@@ -129,3 +129,35 @@ def update_review(r, review_id):
         'review/update_post.html',
         {'form': form}
     )
+
+@login_required
+def delete_ticket(r, ticket_id):
+    ticket = get_object_or_404(models.Ticket, id=ticket_id)
+    if r.method == 'POST':
+        form = forms.DeletePostForm(r.POST)
+        if form.is_valid():
+            ticket.delete()
+            return redirect('posts')
+    else:
+        form = forms.DeletePostForm()
+    return render(
+        r,
+        'review/delete_post.html',
+        {'form': form, 'post': ticket}
+    )
+
+@login_required
+def delete_review(r, review_id):
+    review = get_object_or_404(models.Review, id=review_id)
+    if r.method == 'POST':
+        form = forms.DeletePostForm(r.POST)
+        if form.is_valid():
+            review.delete()
+            return redirect('posts')
+    else:
+        form = forms.DeletePostForm()
+    return render(
+        r,
+        'review/delete_post.html',
+        {'form': form, 'post': review}
+    )

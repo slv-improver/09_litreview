@@ -16,3 +16,6 @@ class ReviewForm(forms.ModelForm):
                 (0, '0'), (1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5')
             ], attrs={ 'class': 'star-rating'}),
         }
+
+class DeletePostForm(forms.Form):
+    delete = forms.BooleanField(widget=forms.HiddenInput, initial=True)
