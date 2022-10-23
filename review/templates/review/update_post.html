@@ -1,9 +1,14 @@
 {% extends 'base.html' %}
+{% load review_extras %}
 
 {% block title %}Update{% endblock %}
 
 {% block content %}
 <h1>Update your post</h1>
+
+{% if form.instance|model_type == 'Review' %}
+    {% include 'review/partials/ticket_snippet.html' with ticket=form.instance.ticket %}
+{% endif %}
 
 <form action="" method="post">
     {{form.as_p}}
