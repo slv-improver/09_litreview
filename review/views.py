@@ -97,3 +97,35 @@ def posts(r):
         'review/posts.html',
         {'posts': posts}
     )
+
+@login_required
+def update_ticket(r, ticket_id):
+    ticket = get_object_or_404(models.Ticket, id=ticket_id)
+    if r.method == 'POST':
+        form = forms.TicketForm(r.POST, r.FILES, instance=ticket)
+        if form.is_valid():
+            form.save()
+            return redirect('posts')
+    else:
+        form = forms.TicketForm(instance=ticket)
+    return render(
+        r,
+        'review/update_post.html',
+        {'form': form}
+    )
+
+@login_required
+def update_review(r, review_id):
+    review = get_object_or_404(models.Review, id=review_id)
+    if r.method == 'POST':
+        form = forms.ReviewForm(r.POST, instance=review)
+        if form.is_valid():
+            form.save()
+            return redirect('posts')
+    else:
+        form = forms.ReviewForm(instance=review)
+    return render(
+        r,
+        'review/update_post.html',
+        {'form': form}
+    )
