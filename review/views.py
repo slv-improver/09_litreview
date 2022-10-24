@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 from itertools import chain
 from . import forms
 from . import models
+from authentication import models as auth_models
 
 
 @login_required
@@ -156,4 +157,26 @@ def delete_post(r, post_id):
         r,
         'review/delete_post.html',
         {'form': form, 'post': post}
+    )
+
+@login_required
+def subscriptions(r):
+    User = get_user_model()
+    if r.method == 'POST':
+        followed_user = User.objects.get(username=r.POST['followed_user'])
+        user = r.user._wrapped
+        print(vars(user))
+        form = forms.FollowUsersForm(r.POST)
+        form.fields['followed_user'] = followed_user
+        form.fields['user'] = user
+        print(vars(form))
+        if form.is_valid():
+            print('ok')
+            # form.user = r.user
+    else:
+        form = forms.FollowUsersForm()
+    return render(
+        r,
+        'review/subscriptions.html',
+        {'form': form}
     )

@@ -15,6 +15,7 @@
         {% if user.is_authenticated %}
             <div class="header-menu">
                 <ul>
+                    <li><a href="{% url 'subscriptions' %}">Subscriptions</a></li>
                     <li><a href="{% url 'logout' %}">Logout</a></li>
                     <li><a href="{% url 'posts' %}">My Posts</a></li>
                 </ul>
