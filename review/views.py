@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.db import IntegrityError
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib import messages
 from itertools import chain
 from . import forms
 from . import models
@@ -174,9 +175,11 @@ def subscriptions(r):
                     followed_user=followed_user
                 )
                 following.save()
-        except (AttributeError, ObjectDoesNotExist, IntegrityError):
-            pass
-            # messages.error(request, form.errors)
+                return redirect('subscriptions')
+        except ObjectDoesNotExist:
+            messages.error(r, 'The user does not exist')
+        except IntegrityError:
+            messages.error(r, 'You already follow this user')
     else:
         form = forms.FollowUsersForm()
 
