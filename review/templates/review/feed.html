@@ -10,7 +10,9 @@
     {% for post in posts %}
         {% if post|model_type == 'Ticket' %}
             {% include 'review/partials/ticket_snippet.html' with ticket=post %}
-            <a href="{% url 'create_review_reply' post.id %}">Review</a>
+            {% if post.review_set.count == 0 %}
+                <a href="{% url 'create_review_reply' post.id %}">Review</a>
+            {% endif %}
         {% elif post|model_type == 'Review' %}
             {% include 'review/partials/review_snippet.html' with review=post %}
         {% endif %}
