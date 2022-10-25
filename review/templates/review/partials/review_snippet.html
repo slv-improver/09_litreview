@@ -6,7 +6,7 @@
             {% get_poster_display review.user %} published a review
         </span>
         <span>
-            {{ review.time_created }}
+            {{ review.time_created|format_date }}
         </span>
     </div>
     <h3>{{ review.headline }} - {{ review.rating }}</h3>

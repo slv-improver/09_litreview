@@ -6,7 +6,7 @@
             {% get_poster_display ticket.user %} asked for review
         </span>
         <span>
-            {{ ticket.time_created }}
+            {{ ticket.time_created|format_date }}
         </span>
     </div>
     <h2>{{ ticket.title }}</h2>
