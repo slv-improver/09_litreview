@@ -179,8 +179,12 @@ def subscriptions(r):
             # messages.error(request, form.errors)
     else:
         form = forms.FollowUsersForm()
+
+    followings = auth_models.UserFollows.objects.filter(
+        user=r.user
+    )
     return render(
         r,
         'review/subscriptions.html',
-        {'form': form}
+        {'form': form, 'followings': followings}
     )

@@ -11,4 +11,15 @@
     {% csrf_token %}
     <button type="submit">Follow</button>
 </form>
+
+<h2>Followings</h2>
+
+<table>
+    {% for following in followings %}
+        <tr>
+            <td>{{ following.followed_user.username }}</td>
+            <td><a href="{% url 'unfollow' following.id ">Unfollow</a></td>
+        </tr>
+    {% endfor %}
+</table>
 {% endblock %}
