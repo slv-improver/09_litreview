@@ -183,8 +183,11 @@ def subscriptions(r):
     followings = auth_models.UserFollows.objects.filter(
         user=r.user
     )
+    followers = auth_models.UserFollows.objects.filter(
+        followed_user=r.user
+    )
     return render(
         r,
         'review/subscriptions.html',
-        {'form': form, 'followings': followings}
+        {'form': form, 'followings': followings, 'followers': followers}
     )

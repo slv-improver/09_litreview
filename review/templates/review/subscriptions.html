@@ -22,4 +22,13 @@
         </tr>
     {% endfor %}
 </table>
+
+<h2>Followers</h2>
+<table>
+    {% for follower in followers %}
+        <tr>
+            <td>{{ follower.user.username }}</td>
+        </tr>
+    {% endfor %}
+</table>
 {% endblock %}
