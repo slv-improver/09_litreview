@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
+from django.db.models import Q
 from django.db import IntegrityError
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
@@ -197,4 +198,22 @@ def subscriptions(r):
         r,
         'review/subscriptions.html',
         {'form': form, 'followings': followings, 'followers': followers}
+    )
+
+@login_required
+def unfollow_user(r, user_id):
+    user = get_user_model().objects.get(id=user_id)
+    if r.method == 'POST':
+        form = forms.UnfollowUserForm(r.POST)
+        if form.is_valid():
+            auth_models.UserFollows.objects.filter(
+                Q(user=r.user) & Q(followed_user=user)
+            ).delete()
+            return redirect('subscriptions')
+    else:
+        form = forms.UnfollowUserForm()
+    return render(
+        r,
+        'review/unfollow_user.html',
+        {'form': form, 'followed_user': user}
     )

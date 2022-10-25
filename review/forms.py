@@ -22,3 +22,6 @@ class DeletePostForm(forms.Form):
 
 class FollowUsersForm(forms.Form):
     followed_user = forms.CharField(label='', max_length=150)
+
+class UnfollowUserForm(forms.Form):
+    unfollow = forms.BooleanField(widget=forms.HiddenInput, initial=True)
