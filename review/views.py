@@ -12,8 +12,12 @@ from authentication import models as auth_models
 
 @login_required
 def feed(r):
-    tickets = models.Ticket.objects.all()
-    reviews = models.Review.objects.all()
+    followed_users = auth_models.UserFollows.objects.filter(
+        user=r.user
+    ).values_list('followed_user')
+    tickets = models.Ticket.objects.filter(user_id__in=followed_users)
+    reviews = models.Review.objects.filter(user_id__in=followed_users)
+    print(tickets)
     posts = sorted(
         chain(tickets,reviews), 
         key=lambda x: x.time_created, 
