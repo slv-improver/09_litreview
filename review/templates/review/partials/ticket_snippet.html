@@ -1,4 +1,12 @@
 <div>
+    <div>
+        <span>
+            {{ ticket.user }} asked for review
+        </span>
+        <span>
+            {{ ticket.time_created }}
+        </span>
+    </div>
     <h2>{{ ticket.title }}</h2>
     <p>{{ ticket.description }}</p>
     {% if ticket.image %}

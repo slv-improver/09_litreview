@@ -7,6 +7,11 @@
 <h1>My Feed</h1>
 
 <div>
+    <a href="{% url 'create_ticket' %}"><button>Request review</a></button>
+    <a href="{% url 'create_review' %}"><button>Post review</a></button>
+</div>
+
+<div>
     {% for post in posts %}
         {% if post|model_type == 'Ticket' %}
             {% include 'review/partials/ticket_snippet.html' with ticket=post %}
@@ -17,10 +22,5 @@
             {% include 'review/partials/review_snippet.html' with review=post %}
         {% endif %}
     {% endfor %}
-</div>
-
-<div>
-    <a href="{% url 'create_ticket' %}">Request review</a>
-    <a href="{% url 'create_review' %}">Post review</a>
 </div>
 {% endblock %}

@@ -1,4 +1,19 @@
 <div>
+    <div>
+        <span>
+            {{ review.user }} published a review
+        </span>
+        <span>
+            {{ review.time_created }}
+        </span>
+    </div>
     <h3>{{ review.headline }} - {{ review.rating }}</h3>
     <p>{{ review.body }}</p>
+    <div>
+        <p>Ticket - {{ review.ticket.user.username }}</p>
+        <p>{{ review.ticket.title }}</p>
+        {% if review.ticket.image %}
+            <img src="{{ review.ticket.image.url }}" />
+        {% endif %}
+    </div>
 </div>
