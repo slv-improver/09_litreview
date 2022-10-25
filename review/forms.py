@@ -19,3 +19,6 @@ class ReviewForm(forms.ModelForm):
 
 class DeletePostForm(forms.Form):
     delete = forms.BooleanField(widget=forms.HiddenInput, initial=True)
+
+class FollowUsersForm(forms.Form):
+    followed_user = forms.CharField(label='', max_length=150)

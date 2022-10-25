@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
+from django.db import IntegrityError
+from django.core.exceptions import ObjectDoesNotExist
 from itertools import chain
 from . import forms
 from . import models
+from authentication import models as auth_models
 
 
 @login_required
@@ -156,4 +159,28 @@ def delete_post(r, post_id):
         r,
         'review/delete_post.html',
         {'form': form, 'post': post}
+    )
+
+@login_required
+def subscriptions(r):
+    User = get_user_model()
+    if r.method == 'POST':
+        form = forms.FollowUsersForm(r.POST)
+        try:
+            followed_user = User.objects.get(username=r.POST['followed_user'])
+            if form.is_valid():
+                following = auth_models.UserFollows(
+                    user=r.user,
+                    followed_user=followed_user
+                )
+                following.save()
+        except (AttributeError, ObjectDoesNotExist, IntegrityError):
+            pass
+            # messages.error(request, form.errors)
+    else:
+        form = forms.FollowUsersForm()
+    return render(
+        r,
+        'review/subscriptions.html',
+        {'form': form}
     )

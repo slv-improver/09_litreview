@@ -12,4 +12,5 @@ urlpatterns = [
     path("my-posts/ticket-<int:post_id>/delete/", views.delete_post, name='delete_ticket'),
     path("my-posts/review-<int:post_id>/update/", views.update_post, name='update_review'),
     path("my-posts/review-<int:post_id>/delete/", views.delete_post, name='delete_review'),
+    path("subscriptions/", views.subscriptions, name='subscriptions'),
 ]
