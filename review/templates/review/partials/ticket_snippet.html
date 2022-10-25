@@ -1,7 +1,9 @@
+{% load review_extras %}
+
 <div>
     <div>
         <span>
-            {{ ticket.user }} asked for review
+            {% get_poster_display ticket.user %} asked for review
         </span>
         <span>
             {{ ticket.time_created }}
