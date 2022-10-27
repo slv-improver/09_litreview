@@ -9,7 +9,7 @@
             {{ review.time_created|format_date }}
         </span>
     </div>
-    <h3>{{ review.headline }} - {{ review.rating }}</h3>
+    <h3>{{ review.headline }} - {% get_rating review.rating %}</h3>
     <p>{{ review.body }}</p>
     <div>
         <p>Ticket - {% get_poster_display review.ticket.user %}</p>

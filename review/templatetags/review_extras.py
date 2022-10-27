@@ -16,3 +16,7 @@ def get_poster_display(context, user):
 @register.filter
 def format_date(time):
     return time.strftime("%I:%M%p, %-d %B %y")
+
+@register.simple_tag
+def get_rating(rate):
+    return '★' * rate + '☆' * (5-rate)
