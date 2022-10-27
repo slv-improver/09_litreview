@@ -12,6 +12,9 @@
 
 <form action="" method="post">
     {{form.as_p}}
+    {% if form.image.value %}
+        <p><img src="{{ form.image.value.url }}" /></p>
+    {% endif %}
     {% csrf_token %}
     <button type="submit">Update</button>
 </form>
