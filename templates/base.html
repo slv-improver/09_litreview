@@ -8,26 +8,30 @@
     <title>{% block title %}{% endblock %} - LITReview</title>
 </head>
 <body>
-    <header>
+    <header class="header flex">
         <div class="logo">
             <a href="{% url 'feed' %}">
-                <img src="{% static 'litreview-logo.png' %}" alt="">
+                <img src="{% static 'litreview-logo.png' %}" />
             </a>
         </div>
         {% if user.is_authenticated %}
-            <div class="header-menu">
-                <ul>
+            <div class="header-menu flex">
+                <ul class="flex">
                     <li><a href="{% url 'feed' %}">Feed</a></li>
                     <li><a href="{% url 'subscriptions' %}">Subscriptions</a></li>
                     <li><a href="{% url 'posts' %}">My Posts</a></li>
+                    <li>
+                        <a href="{% url 'logout' %}">Logout</a> - 
+                        Logged as «{{ user.username  }}»
+                    </li>
                 </ul>
                 <p>
-                    Logged as {{ user.username  }} - 
-                    <a href="{% url 'logout' %}">Logout</a>
                 </p>
             </div>
         {% endif %}
     </header>
-    {% block content %}{% endblock %}
+    <div class="main">
+        {% block content %}{% endblock %}
+    </div>
 </body>
 </html>
