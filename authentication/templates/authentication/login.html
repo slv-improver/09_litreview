@@ -3,19 +3,22 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<div>
-    <p>Not registered yet ? Sign up now</a></p>
-    <a href="{% url 'signup' %}"><button>Sign up</button></a>
+<div class="flex">
+    <div class="flex flex-column">
+        <p>Not registered yet ? Sign up now</a></p>
+        <a href="{% url 'signup' %}"><button>Sign up</button></a>
+    </div>
+    <div class="flex flex-column">
+        <h1>Login</h1>
+    
+        <p>{{ message }}</p>
+    
+        <form action="" method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <p class="right-align"><button type="submit">Login</button></p>
+        </form>
+    </div>
 </div>
-<div>
-    <h1>Login</h1>
 
-    <p>{{ message }}</p>
-
-    <form action="" method="post">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <button type="submit">Login</button>
-    </form>
-</div>
 {% endblock %}
