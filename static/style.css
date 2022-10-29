@@ -18,6 +18,13 @@ button {
 input::placeholder {
     text-align: center;
 }
+label {
+    display: inline-block;
+    width: 100px;
+}
+form img {
+    width: 150px;
+}
 
 .header {
     border-bottom: 1px solid grey;
@@ -93,4 +100,9 @@ table td {
 .unfollow-button {
     width: 100px;
     text-align: center;
+}
+
+div#id_rating > * {
+    display: inline;
+    margin-inline: 15px;
 }

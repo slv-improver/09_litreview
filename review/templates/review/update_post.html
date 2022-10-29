@@ -4,17 +4,31 @@
 {% block title %}Update{% endblock %}
 
 {% block content %}
-<h1>Update your post</h1>
+<h1>Update your post ({{ form.instance|model_type }})</h1>
 
 {% if form.instance|model_type == 'Review' %}
     {% include 'review/partials/ticket_snippet.html' with ticket=form.instance.ticket %}
 {% endif %}
 
 <form action="" method="post">
-    {{form.as_p}}
-    {% if form.image.value %}
-        <p><img src="{{ form.image.value.url }}" /></p>
-    {% endif %}
+    <p>
+        {{ form.title.errors }}
+        <label for="{{ form.title.id_for_label }}">Title:</label>
+        {{ form.title }}
+    </p>
+    <p>
+        {{ form.description.errors }}
+        <label for="{{ form.description.id_for_label }}">Description:</label>
+        {{ form.description }}
+    </p>
+    <p>
+        {{ form.image.errors }}
+        <label for="{{ form.image.id_for_label }}">Image:</label><br>
+        {% if form.image.value %}
+            <img src="{{ form.image.value.url }}" />
+        {% endif %}
+        {{ form.image }}
+    </p>
     {% csrf_token %}
     <button type="submit">Update</button>
 </form>
