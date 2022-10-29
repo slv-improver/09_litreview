@@ -4,23 +4,25 @@
 {% block title %}Feed{% endblock %}
 
 {% block content %}
-<h1>My Feed</h1>
-
-<div>
-    <a href="{% url 'create_ticket' %}"><button>Request review</a></button>
-    <a href="{% url 'create_review' %}"><button>Post review</a></button>
-</div>
-
-<div>
-    {% for post in posts %}
-        {% if post|model_type == 'Ticket' %}
-            {% include 'review/partials/ticket_snippet.html' with ticket=post %}
-            {% if post.review_set.count == 0 %}
-                <a href="{% url 'create_review_reply' post.id %}">Review</a>
+<div class="flex flex-column">
+    <h1>My Feed</h1>
+    
+    <div class="flex feed-top-button">
+        <a href="{% url 'create_ticket' %}"><button>Request review</button></a>
+        <a href="{% url 'create_review' %}"><button>Post review</button></a>
+    </div>
+    
+    <div class="posts">
+        {% for post in posts %}
+            {% if post|model_type == 'Ticket' %}
+                {% include 'review/partials/ticket_snippet.html' with ticket=post %}
+                {% if post.review_set.count == 0 %}
+                    <a href="{% url 'create_review_reply' post.id %}">Review</a>
+                {% endif %}
+            {% elif post|model_type == 'Review' %}
+                {% include 'review/partials/review_snippet.html' with review=post %}
             {% endif %}
-        {% elif post|model_type == 'Review' %}
-            {% include 'review/partials/review_snippet.html' with review=post %}
-        {% endif %}
-    {% endfor %}
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

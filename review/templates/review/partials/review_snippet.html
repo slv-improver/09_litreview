@@ -1,7 +1,7 @@
 {% load review_extras %}
 
-<div>
-    <div>
+<div class="review flex flex-column">
+    <div class="meta flex">
         <span>
             {% get_poster_display review.user %} published a review
         </span>
@@ -11,7 +11,7 @@
     </div>
     <h3>{{ review.headline }} - {% get_rating review.rating %}</h3>
     <p>{{ review.body }}</p>
-    <div>
+    <div class="ticket">
         <p>Ticket - {% get_poster_display review.ticket.user %}</p>
         <p>{{ review.ticket.title }}</p>
         {% if review.ticket.image %}

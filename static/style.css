@@ -40,3 +40,28 @@ input::placeholder {
     margin: 100px auto;
     max-width: 890px;
 }
+
+.feed-top-button a {
+    margin: 25px 60px;
+}
+.review, .ticket {
+    border: 1px solid rgb(62, 72, 77);
+    padding: 15px;
+    margin: 5px;
+}
+.review .ticket {
+    align-self: center;
+    min-width: 500px;
+}
+.review {
+    min-width: 600px;
+    align-items: flex-start;
+    background: rgb(247, 245, 190);
+}
+.ticket {
+    background: rgb(18, 53, 93);
+    color: azure;
+}
+.meta {
+    width: 100%;
+}
