@@ -6,16 +6,20 @@
 {% block content %}
 <h1>My Posts</h1>
 
-<div>
+<div class="posts">
     {% for post in posts %}
         {% if post|model_type == 'Ticket' %}
             {% include 'review/partials/ticket_snippet.html' with ticket=post %}
-            <a href="{% url 'update_ticket' post.id %}">Update</a>
-            <a href="{% url 'delete_ticket' post.id %}">Delete</a>
+            <p class="post-buttons">
+                <a href="{% url 'update_ticket' post.id %}"><button>Update</button></a>
+                <a href="{% url 'delete_ticket' post.id %}"><button>Delete</button></a>
+            </p>
         {% elif post|model_type == 'Review' %}
             {% include 'review/partials/review_snippet.html' with review=post %}
-            <a href="{% url 'update_review' post.id %}">Update</a>
-            <a href="{% url 'delete_review' post.id %}">Delete</a>
+            <p class="post-buttons">
+                <a href="{% url 'update_review' post.id %}"><button>Update</button></a>
+                <a href="{% url 'delete_review' post.id %}"><button>Delete</button></a>
+            </p>
         {% endif %}
     {% endfor %}
 </div>

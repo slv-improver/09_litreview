@@ -5,6 +5,12 @@ li {
 a {
     text-decoration: none;
 }
+button {
+    padding: 5px 15px;
+    margin-inline: 15px;
+    background: azure;
+    border-radius: 7px;
+}
 .right-align {
     text-align: right;
 }
@@ -60,8 +66,13 @@ input::placeholder {
 }
 .ticket {
     background: rgb(18, 53, 93);
-    color: azure;
+    color: rgb(240, 255, 255);
 }
 .meta {
     width: 100%;
+}
+
+.post-buttons {
+    text-align: right;
+    margin-bottom: 2em;
 }
