@@ -9,8 +9,8 @@ a {
     text-align: right;
 }
 
-.helptext {
-    display: block;
+input::placeholder {
+    text-align: center;
 }
 
 .header {
