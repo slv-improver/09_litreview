@@ -108,22 +108,6 @@ def posts(r):
     )
 
 @login_required
-def update_ticket(r, ticket_id):
-    ticket = get_object_or_404(models.Ticket, id=ticket_id)
-    if r.method == 'POST':
-        form = forms.TicketForm(r.POST, r.FILES, instance=ticket)
-        if form.is_valid():
-            form.save()
-            return redirect('posts')
-    else:
-        form = forms.TicketForm(instance=ticket)
-    return render(
-        r,
-        'review/update_post.html',
-        {'form': form}
-    )
-
-@login_required
 def update_post(r, post_id):
     if 'ticket' in r.path:
         post = get_object_or_404(models.Ticket, id=post_id)
