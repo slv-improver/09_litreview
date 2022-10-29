@@ -22,7 +22,11 @@ class DeletePostForm(forms.Form):
     delete = forms.BooleanField(widget=forms.HiddenInput, initial=True)
 
 class FollowUsersForm(forms.Form):
-    followed_user = forms.CharField(label='', max_length=150)
+    followed_user = forms.CharField(
+        label='',
+        max_length=150,
+        widget=forms.TextInput(attrs={'placeholder': 'Username'}),
+    )
 
 class UnfollowUserForm(forms.Form):
     unfollow = forms.BooleanField(widget=forms.HiddenInput, initial=True)
