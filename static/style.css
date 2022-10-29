@@ -1,3 +1,7 @@
+/*
+GENERAL
+*/
+
 li {
     list-style: none;
     margin-inline: 20px;
@@ -11,10 +15,6 @@ button {
     background: azure;
     border-radius: 7px;
 }
-.right-align {
-    text-align: right;
-}
-
 input::placeholder {
     text-align: center;
 }
@@ -26,16 +26,13 @@ form img {
     width: 150px;
 }
 
-.header {
-    border-bottom: 1px solid grey;
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    padding: 5px 20px;
-    background: rgb(230, 236, 244);
-}
+/*
+GLOBAL CLASSES
+*/
 
+.right-align {
+    text-align: right;
+}
 .flex {
     display: flex;
     justify-content: space-around;
@@ -45,9 +42,26 @@ form img {
     flex-direction: column;
 }
 
+/*
+HEADER
+*/
+
+.header {
+    border-bottom: 1px solid grey;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    padding: 5px 20px;
+    background: rgb(230, 236, 244);
+}
 .logo img {
     width: 60px;
 }
+
+/*
+FEED & POSTS
+*/
 
 .main {
     margin: 100px auto;
@@ -84,6 +98,10 @@ form img {
     margin-bottom: 2em;
 }
 
+/*
+FOLLOW
+*/
+
 .follow-form, .follow-form input {
     width: 100%;
 }
@@ -101,6 +119,10 @@ table td {
     width: 100px;
     text-align: center;
 }
+
+/*
+FORMS
+*/
 
 div#id_rating > * {
     display: inline;
