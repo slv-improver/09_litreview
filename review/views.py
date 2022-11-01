@@ -18,7 +18,6 @@ def feed(r):
     ).values_list('followed_user')
     tickets = models.Ticket.objects.filter(user_id__in=followed_users)
     reviews = models.Review.objects.filter(user_id__in=followed_users)
-    print(tickets)
     posts = sorted(
         chain(tickets, reviews),
         key=lambda x: x.time_created,
