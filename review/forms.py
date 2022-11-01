@@ -6,6 +6,9 @@ class TicketForm(forms.ModelForm):
     class Meta:
         model = models.Ticket
         fields = ('title', 'description', 'image')
+        widgets = {
+            'image': forms.FileInput()
+        }
 
 class ReviewForm(forms.ModelForm):
     class Meta:
