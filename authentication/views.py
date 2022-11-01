@@ -19,6 +19,7 @@ def signup(r):
         {'form': form}
     )
 
+
 def login_user(r):
     message = ''
     if r.method == 'POST':
@@ -40,6 +41,7 @@ def login_user(r):
         'authentication/login.html',
         {'form': form, 'message': message}
     )
+
 
 def logout_user(r):
     logout(r)

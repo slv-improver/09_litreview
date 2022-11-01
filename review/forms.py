@@ -10,6 +10,7 @@ class TicketForm(forms.ModelForm):
             'image': forms.FileInput()
         }
 
+
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = models.Review
@@ -18,11 +19,13 @@ class ReviewForm(forms.ModelForm):
         widgets = {
             'rating': forms.RadioSelect(choices=[
                 (0, '0'), (1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5')
-            ], attrs={ 'class': 'star-rating'}),
+            ], attrs={'class': 'star-rating'}),
         }
+
 
 class DeletePostForm(forms.Form):
     delete = forms.BooleanField(widget=forms.HiddenInput, initial=True)
+
 
 class FollowUsersForm(forms.Form):
     followed_user = forms.CharField(
@@ -30,6 +33,7 @@ class FollowUsersForm(forms.Form):
         max_length=150,
         widget=forms.TextInput(attrs={'placeholder': 'Username'}),
     )
+
 
 class UnfollowUserForm(forms.Form):
     unfollow = forms.BooleanField(widget=forms.HiddenInput, initial=True)

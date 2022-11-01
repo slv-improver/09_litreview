@@ -20,8 +20,8 @@ def feed(r):
     reviews = models.Review.objects.filter(user_id__in=followed_users)
     print(tickets)
     posts = sorted(
-        chain(tickets,reviews), 
-        key=lambda x: x.time_created, 
+        chain(tickets, reviews),
+        key=lambda x: x.time_created,
         reverse=True
     )
     return render(
@@ -29,6 +29,7 @@ def feed(r):
         'review/feed.html',
         {'posts': posts}
     )
+
 
 @login_required
 def create_ticket(r):
@@ -47,6 +48,7 @@ def create_ticket(r):
         'review/create_ticket.html',
         {'form': form}
     )
+
 
 @login_required
 def create_review_reply(r, ticket_id):
@@ -67,6 +69,7 @@ def create_review_reply(r, ticket_id):
         'review/create_review_reply.html',
         {'form': form, 'ticket': ticket}
     )
+
 
 @login_required
 def create_review(r):
@@ -92,13 +95,14 @@ def create_review(r):
         {'ticket_form': ticket_form, 'review_form': review_form}
     )
 
+
 @login_required
 def posts(r):
     tickets = models.Ticket.objects.filter(user=r.user)
-    reviews =  models.Review.objects.filter(user=r.user)
+    reviews = models.Review.objects.filter(user=r.user)
     posts = sorted(
-        chain(tickets,reviews), 
-        key=lambda x: x.time_created, 
+        chain(tickets, reviews),
+        key=lambda x: x.time_created,
         reverse=True
     )
     return render(
@@ -106,6 +110,7 @@ def posts(r):
         'review/posts.html',
         {'posts': posts}
     )
+
 
 @login_required
 def update_post(r, post_id):
@@ -132,6 +137,7 @@ def update_post(r, post_id):
         {'form': form}
     )
 
+
 @login_required
 def delete_post(r, post_id):
     if 'ticket' in r.path:
@@ -150,6 +156,7 @@ def delete_post(r, post_id):
         'review/delete_post.html',
         {'form': form, 'post': post}
     )
+
 
 @login_required
 def subscriptions(r):
@@ -183,6 +190,7 @@ def subscriptions(r):
         'review/subscriptions.html',
         {'form': form, 'followings': followings, 'followers': followers}
     )
+
 
 @login_required
 def unfollow_user(r, user_id):

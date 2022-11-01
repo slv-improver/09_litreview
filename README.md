@@ -9,6 +9,11 @@
 - `pip install -r requirements.txt`
 - `python manage.py runserver`
 
+# PEP 8
+
+`flake8`
+Flake8 does not report any errors
+
 ## Users
 
 user: Zxc123.0

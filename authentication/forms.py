@@ -18,10 +18,13 @@ class SignupForm(UserCreationForm):
         model = get_user_model()
         fields = ('username',)
 
+
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=63, label='')
-    password = forms.CharField(max_length=63, widget=forms.PasswordInput, label='')
-    
+    password = forms.CharField(
+        max_length=63, widget=forms.PasswordInput, label=''
+    )
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields:
