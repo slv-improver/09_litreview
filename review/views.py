@@ -18,8 +18,10 @@ def feed(r):
     ).values_list('followed_user')
     tickets = models.Ticket.objects.filter(user_id__in=followed_users)
     reviews = models.Review.objects.filter(user_id__in=followed_users)
+    own_tickets = models.Ticket.objects.filter(user=r.user)
+    own_reviews = models.Review.objects.filter(user=r.user)
     posts = sorted(
-        chain(tickets, reviews),
+        chain(tickets, reviews, own_tickets, own_reviews),
         key=lambda x: x.time_created,
         reverse=True
     )
