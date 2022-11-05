@@ -11,14 +11,14 @@
 
 # PEP 8
 
-`flake8`
+`flake8` </br>
 Flake8 does not report any errors
 
 ## Users
 
-user: Zxc123.0
-resu: 0.321cxZ
-test: Test123.0
+- user: Zxc123.0
+- resu: 0.321cxZ
+- test: Test123.0
 
 ## Dependencies
 
