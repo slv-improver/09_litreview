@@ -22,11 +22,5 @@ Flake8 does not report any errors
 
 ## Dependencies
 
-asgiref==3.5.2
-Django==4.1.2
-flake8==5.0.4
-mccabe==0.7.0
-Pillow==9.2.0
-pycodestyle==2.9.1
-pyflakes==2.5.0
-sqlparse==0.4.3
+- Django==4.1.2
+- Pillow==9.2.0
