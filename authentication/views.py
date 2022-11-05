@@ -4,6 +4,10 @@ from django.conf import settings
 from . import forms
 
 
+def home(r):
+    return render(r, 'authentication/home.html')
+
+
 def signup(r):
     if r.method == 'POST':
         form = forms.SignupForm(r.POST)

@@ -10,13 +10,13 @@
 <body>
     <header class="header flex">
         <div class="logo">
-            <a href="{% url 'feed' %}">
+            <a href="{% url 'home' %}">
                 <img src="{% static 'litreview-logo.png' %}" />
             </a>
         </div>
-        {% if user.is_authenticated %}
-            <div class="header-menu flex">
-                <ul class="flex">
+        <div class="header-menu flex">
+            <ul class="flex">
+                {% if user.is_authenticated %}
                     <li><a href="{% url 'feed' %}">Feed</a></li>
                     <li><a href="{% url 'subscriptions' %}">Subscriptions</a></li>
                     <li><a href="{% url 'posts' %}">My Posts</a></li>
@@ -24,11 +24,11 @@
                         <a href="{% url 'logout' %}">Logout</a> - 
                         Logged as «{{ user.username  }}»
                     </li>
-                </ul>
-                <p>
-                </p>
-            </div>
-        {% endif %}
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
     </header>
     <div class="main">
         {% block content %}{% endblock %}
