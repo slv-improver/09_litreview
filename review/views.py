@@ -165,8 +165,8 @@ def subscriptions(r):
     if r.method == 'POST':
         form = forms.FollowUsersForm(r.POST)
         try:
-            followed_user = User.objects.get(username=r.POST['followed_user'])
             if form.is_valid():
+                followed_user = User.objects.get(username=form.cleaned_data['followed_user'])
                 following = auth_models.UserFollows(
                     user=r.user,
                     followed_user=followed_user
